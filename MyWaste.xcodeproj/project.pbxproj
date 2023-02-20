@@ -141,14 +141,10 @@
 		86EDAFBF29A3D79C002B1738 /* MyWaste */ = {
 			isa = PBXGroup;
 			children = (
-				86EDAFC029A3D79C002B1738 /* AppDelegate.swift */,
-				86EDAFC229A3D79C002B1738 /* SceneDelegate.swift */,
-				86EDAFC429A3D79C002B1738 /* ViewController.swift */,
-				86EDAFC929A3D7A0002B1738 /* Assets.xcassets */,
-				86EDAFCB29A3D7A0002B1738 /* LaunchScreen.storyboard */,
+				86EDAFF629A43AF7002B1738 /* App */,
+				86EDAFF429A43A96002B1738 /* View */,
+				86EDAFF529A43AC8002B1738 /* Supporting files */,
 				86EDAFCE29A3D7A0002B1738 /* Info.plist */,
-				86EDAFF029A422C6002B1738 /* BinCollectionViewCell.swift */,
-				86EDAFF229A42F17002B1738 /* AddBinViewController.swift */,
 			);
 			path = MyWaste;
 			sourceTree = "<group>";
@@ -168,6 +164,34 @@
 				86EDAFE329A3D7A1002B1738 /* MyWasteUITestsLaunchTests.swift */,
 			);
 			path = MyWasteUITests;
+			sourceTree = "<group>";
+		};
+		86EDAFF429A43A96002B1738 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				86EDAFC429A3D79C002B1738 /* ViewController.swift */,
+				86EDAFF029A422C6002B1738 /* BinCollectionViewCell.swift */,
+				86EDAFF229A42F17002B1738 /* AddBinViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		86EDAFF529A43AC8002B1738 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				86EDAFC929A3D7A0002B1738 /* Assets.xcassets */,
+				86EDAFCB29A3D7A0002B1738 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		86EDAFF629A43AF7002B1738 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				86EDAFC029A3D79C002B1738 /* AppDelegate.swift */,
+				86EDAFC229A3D79C002B1738 /* SceneDelegate.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
