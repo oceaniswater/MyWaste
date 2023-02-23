@@ -12,6 +12,10 @@
 		865A960429A507E3002963BC /* CollectionDayViewInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865A960329A507E3002963BC /* CollectionDayViewInfo.swift */; };
 		865A960729A53118002963BC /* CollectionBinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865A960629A53118002963BC /* CollectionBinView.swift */; };
 		865A960929A5384F002963BC /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865A960829A5384F002963BC /* CalendarView.swift */; };
+		86E7350E29A663FB00B257DB /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86E7350D29A663FB00B257DB /* Storyboard.storyboard */; };
+		86E7351029A6691C00B257DB /* BinPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E7350F29A6691C00B257DB /* BinPickerView.swift */; };
+		86E7351429A6746D00B257DB /* WeekDayTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E7351329A6746D00B257DB /* WeekDayTableView.swift */; };
+		86E7351629A688AA00B257DB /* WeekdayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E7351529A688AA00B257DB /* WeekdayCell.swift */; };
 		86EDAFC129A3D79C002B1738 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EDAFC029A3D79C002B1738 /* AppDelegate.swift */; };
 		86EDAFC329A3D79C002B1738 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EDAFC229A3D79C002B1738 /* SceneDelegate.swift */; };
 		86EDAFC529A3D79C002B1738 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EDAFC429A3D79C002B1738 /* ViewController.swift */; };
@@ -52,6 +56,10 @@
 		865A960329A507E3002963BC /* CollectionDayViewInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDayViewInfo.swift; sourceTree = "<group>"; };
 		865A960629A53118002963BC /* CollectionBinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionBinView.swift; sourceTree = "<group>"; };
 		865A960829A5384F002963BC /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		86E7350D29A663FB00B257DB /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		86E7350F29A6691C00B257DB /* BinPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinPickerView.swift; sourceTree = "<group>"; };
+		86E7351329A6746D00B257DB /* WeekDayTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDayTableView.swift; sourceTree = "<group>"; };
+		86E7351529A688AA00B257DB /* WeekdayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayCell.swift; sourceTree = "<group>"; };
 		86EDAFBD29A3D79C002B1738 /* MyWaste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWaste.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86EDAFC029A3D79C002B1738 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86EDAFC229A3D79C002B1738 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +140,29 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		86E7351129A6735400B257DB /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				86EDAFC429A3D79C002B1738 /* ViewController.swift */,
+				865A960129A5015F002963BC /* CollectionDayView.swift */,
+				865A960829A5384F002963BC /* CalendarView.swift */,
+				865A960629A53118002963BC /* CollectionBinView.swift */,
+				86EDAFF029A422C6002B1738 /* BinCollectionViewCell.swift */,
+			);
+			path = MainViewController;
+			sourceTree = "<group>";
+		};
+		86E7351229A6738E00B257DB /* AddBinViewController */ = {
+			isa = PBXGroup;
+			children = (
+				86EDAFF229A42F17002B1738 /* AddBinViewController.swift */,
+				86E7350F29A6691C00B257DB /* BinPickerView.swift */,
+				86E7351329A6746D00B257DB /* WeekDayTableView.swift */,
+				86E7351529A688AA00B257DB /* WeekdayCell.swift */,
+			);
+			path = AddBinViewController;
+			sourceTree = "<group>";
+		};
 		86EDAFB429A3D79C002B1738 = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +193,7 @@
 				86EDAFF429A43A96002B1738 /* View */,
 				86EDAFF529A43AC8002B1738 /* Supporting files */,
 				86EDAFCE29A3D7A0002B1738 /* Info.plist */,
+				86E7350D29A663FB00B257DB /* Storyboard.storyboard */,
 			);
 			path = MyWaste;
 			sourceTree = "<group>";
@@ -186,12 +218,8 @@
 		86EDAFF429A43A96002B1738 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				86EDAFC429A3D79C002B1738 /* ViewController.swift */,
-				86EDAFF229A42F17002B1738 /* AddBinViewController.swift */,
-				86EDAFF029A422C6002B1738 /* BinCollectionViewCell.swift */,
-				865A960629A53118002963BC /* CollectionBinView.swift */,
-				865A960129A5015F002963BC /* CollectionDayView.swift */,
-				865A960829A5384F002963BC /* CalendarView.swift */,
+				86E7351129A6735400B257DB /* MainViewController */,
+				86E7351229A6738E00B257DB /* AddBinViewController */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -326,6 +354,7 @@
 			files = (
 				86EDAFCD29A3D7A0002B1738 /* LaunchScreen.storyboard in Resources */,
 				86EDAFCA29A3D7A0002B1738 /* Assets.xcassets in Resources */,
+				86E7350E29A663FB00B257DB /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,12 +501,15 @@
 			files = (
 				86EDAFC529A3D79C002B1738 /* ViewController.swift in Sources */,
 				86EDAFC129A3D79C002B1738 /* AppDelegate.swift in Sources */,
+				86E7351429A6746D00B257DB /* WeekDayTableView.swift in Sources */,
+				86E7351029A6691C00B257DB /* BinPickerView.swift in Sources */,
 				865A960729A53118002963BC /* CollectionBinView.swift in Sources */,
 				865A960429A507E3002963BC /* CollectionDayViewInfo.swift in Sources */,
 				86EDAFF329A42F17002B1738 /* AddBinViewController.swift in Sources */,
 				865A960929A5384F002963BC /* CalendarView.swift in Sources */,
 				86EDAFF129A422C6002B1738 /* BinCollectionViewCell.swift in Sources */,
 				86EDAFC329A3D79C002B1738 /* SceneDelegate.swift in Sources */,
+				86E7351629A688AA00B257DB /* WeekdayCell.swift in Sources */,
 				865A960229A5015F002963BC /* CollectionDayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

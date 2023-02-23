@@ -58,6 +58,26 @@ class ViewController: UIViewController {
     let bins: [Bin] = [Bin(type: .ewaste), Bin(type: .paper), Bin(type: .plastic), Bin(type: .glass), Bin(type: .organic), Bin(type: .metal)]
     let info = CollectionDayViewInfo(textInfo: "Friday, February 25", bins: [Bin(type: .ewaste), Bin(type: .paper), Bin(type: .plastic)])
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // this block for set up navigation bar
+        guard let navBar = navigationController?.navigationBar else { return }
+//        navBar.tintColor = UIColor.white
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor(named: "BinsColorBackground")
+        
+        navBar.standardAppearance = appearance
+        navBar.scrollEdgeAppearance = appearance
+        title = "MyWaste"
+        // Set the color of the title text to red
+        let attributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "BinsColorText")]
+        navBar.titleTextAttributes = attributes as [NSAttributedString.Key : Any]
+        navigationItem.backButtonTitle = "Back"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,81 +89,20 @@ class ViewController: UIViewController {
     }
     
     @objc func addButtonPressed() {
-//        let secondVC = AddBinViewController()
-//        navigationController?.pushViewController(secondVC, animated: true)
+        let secondVC = AddBinViewController()
+        navigationController?.pushViewController(secondVC, animated: true)
         
-        let modalViewController = AddBinViewController()
-        modalViewController.modalPresentationStyle = .popover
-        present(modalViewController, animated: true, completion: nil)
+//        let modalViewController = AddBinViewController()
+//        modalViewController.modalPresentationStyle = .popover
+//        present(modalViewController, animated: true, completion: nil)
         
     }
 }
 
 // MARK: - Setup UI
 
-extension ViewController {
-    
-//    private func initialize() {
-//        view.backgroundColor = UIColor(named: "BinsColorBackground")
-//
-//        let scrollView = UIScrollView()
-//
-//        view.addSubview(scrollView)
-//        scrollView.snp.makeConstraints { maker in
-//            maker.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
-//            maker.top.bottom.equalTo(view.safeAreaLayoutGuide)
-//        }
-//
-//
-//
-//        scrollView.addSubview(addCollectionDayTitle)
-//        addCollectionDayTitle.snp.makeConstraints { maker in
-//            maker.leading.equalTo(scrollView.safeAreaLayoutGuide.snp.leading)
-//            maker.top.equalTo(scrollView.safeAreaLayoutGuide.snp.top).offset(10)
-//        }
-//
-//        scrollView.addSubview(addCollectionDayInfoView)
-//        addCollectionDayInfoView.snp.makeConstraints { maker in
-//            maker.leading.trailing.equalTo(scrollView.safeAreaLayoutGuide)
-//            maker.top.equalTo(addCollectionDayTitle.snp.bottom).offset(10)
-//        }
-//
-//        scrollView.addSubview(addScheduleTitle)
-//        addScheduleTitle.snp.makeConstraints { maker in
-//            maker.leading.equalTo(scrollView.safeAreaLayoutGuide.snp.leading)
-//            maker.top.equalTo(addCollectionDayInfoView.snp.bottom).offset(10)
-//            maker.height.equalTo(20)
-//        }
-//
-//        scrollView.addSubview(addCalendarView)
-//        addCalendarView.snp.makeConstraints { maker in
-//            maker.leading.trailing.equalTo(scrollView.safeAreaLayoutGuide)
-//            maker.top.equalTo(addScheduleTitle.snp.bottom).offset(10)
-//        }
-//
-//        let horizontalStackView = UIStackView(arrangedSubviews: [addBinsTitleLabel, addAddButton])
-//        horizontalStackView.axis = .horizontal
-//        horizontalStackView.spacing = 10
-//
-//        scrollView.addSubview(horizontalStackView)
-//        horizontalStackView.snp.makeConstraints { maker in
-//            maker.leading.trailing.equalTo(scrollView.safeAreaLayoutGuide)
-//            maker.top.equalTo(addCalendarView.snp.bottom).offset(10)
-//        }
-//
-//        scrollView.addSubview(addCollectionView)
-//        addCollectionView.snp.makeConstraints { maker in
-//            maker.leading.trailing.equalTo(scrollView.safeAreaLayoutGuide)
-//            maker.top.equalTo(horizontalStackView.snp.bottom).offset(10)
-////            maker.height.equalTo(150)
-//            maker.bottom.equalToSuperview()
-//        }
-//
-//        scrollView.contentSize = CGSize(width: scrollView.contentSize.width, height: addCollectionView.frame.maxY + 10)
-//
-//
-//    }
-    private func initialize() {
+private extension ViewController {
+     func initialize() {
         view.backgroundColor = UIColor(named: "BinsColorBackground")
 
         let scrollView = UIScrollView()
@@ -151,7 +110,8 @@ extension ViewController {
 
         scrollView.snp.makeConstraints { maker in
             maker.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
-            maker.top.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
+            maker.top.equalTo(view.safeAreaLayoutGuide)
+            maker.bottom.equalToSuperview()
         }
 
         scrollView.addSubview(addCollectionDayTitle)
