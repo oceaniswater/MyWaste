@@ -6,6 +6,11 @@
 //
 
 import UIKit
+import RealmSwift
+
+protocol WeekDayTableViewDelegate {
+    func getWeekdays(_ weekDayTableView: WeekDayTableView, _ weekdays: [Weekday])
+}
 
 class WeekDayTableView: UIView {
     // MARK: - Public functions
@@ -27,11 +32,11 @@ class WeekDayTableView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Private constants
+    // MARK: - Public properies
+    var delegate: WeekDayTableViewDelegate?
     
+    // MARK: - Private constants
     private enum UIConstants {
-        static let binWidth: CGFloat = 100
-        static let binHeight: CGFloat = 160
         static let contentInset: CGFloat = 16
     }
     
@@ -42,7 +47,53 @@ class WeekDayTableView: UIView {
         return table
     }()
     
-    let weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    var weekdays: [Weekday] = {
+        var weekdays = [Weekday]()
+        var sunday: Weekday = {
+            let sunday = Weekday()
+            sunday.name = .sunday
+            sunday.weekdayNumber = 1
+            return sunday
+        }()
+        var monday: Weekday = {
+            let monday = Weekday()
+            monday.name = .monday
+            monday.weekdayNumber = 2
+            return monday
+        }()
+        var tuesday: Weekday = {
+            let tuesday = Weekday()
+            tuesday.name = .tuesday
+            tuesday.weekdayNumber = 3
+            return tuesday
+        }()
+        var wednesday: Weekday = {
+            let wednesday = Weekday()
+            wednesday.name = .wednesday
+            wednesday.weekdayNumber = 4
+            return wednesday
+        }()
+        var thursday: Weekday = {
+            let thursday = Weekday()
+            thursday.name = .thursday
+            thursday.weekdayNumber = 5
+            return thursday
+        }()
+        var friday: Weekday = {
+            let friday = Weekday()
+            friday.name = .friday
+            friday.weekdayNumber = 6
+            return friday
+        }()
+        var saturday: Weekday = {
+            let saturday = Weekday()
+            saturday.name = .saturday
+            saturday.weekdayNumber = 7
+            return saturday
+        }()
+        weekdays = [sunday, monday, tuesday, wednesday, thursday, friday, saturday]
+        return weekdays
+    }()
 
 }
 
@@ -66,12 +117,14 @@ extension WeekDayTableView {
         }
         
     }
-    
 }
 
 extension WeekDayTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        weekdays[indexPath.row].selected = !weekdays[indexPath.row].selected
+        delegate?.getWeekdays(self, weekdays)
         tableView.deselectRow(at: indexPath, animated: true)
+        tableView.reloadData()
     }
 }
 
@@ -82,7 +135,8 @@ extension WeekDayTableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "weekdayCell", for: indexPath)
-        cell.textLabel?.text = weekdays[indexPath.row]
+        cell.textLabel?.text = weekdays[indexPath.row].name.rawValue
+        cell.accessoryType = weekdays[indexPath.row].selected ? .checkmark : .none
         cell.backgroundColor = .clear
         return cell
     }

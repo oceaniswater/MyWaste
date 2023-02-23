@@ -55,8 +55,8 @@ class ViewController: UIViewController {
     
     
     
-    let bins: [Bin] = [Bin(type: .ewaste), Bin(type: .paper), Bin(type: .plastic), Bin(type: .glass), Bin(type: .organic), Bin(type: .metal)]
-    let info = CollectionDayViewInfo(textInfo: "Friday, February 25", bins: [Bin(type: .ewaste), Bin(type: .paper), Bin(type: .plastic)])
+//    let bins: [Bin] = [Bin(type: .ewaste), Bin(type: .paper), Bin(type: .plastic), Bin(type: .glass), Bin(type: .organic), Bin(type: .metal)]
+//    let info = CollectionDayViewInfo(textInfo: "Friday, February 25", bins: [Bin(type: .ewaste), Bin(type: .paper), Bin(type: .plastic)])
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -83,8 +83,8 @@ class ViewController: UIViewController {
         
 
 
-        addCollectionDayInfoView.configure(with: info)
-        addCollectionView.configure(with: bins)
+//        addCollectionDayInfoView.configure(with: info)
+//        addCollectionView.configure(with: bins)
         initialize()
     }
     

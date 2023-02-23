@@ -26,6 +26,8 @@
 		86EDAFE429A3D7A1002B1738 /* MyWasteUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EDAFE329A3D7A1002B1738 /* MyWasteUITestsLaunchTests.swift */; };
 		86EDAFF129A422C6002B1738 /* BinCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EDAFF029A422C6002B1738 /* BinCollectionViewCell.swift */; };
 		86EDAFF329A42F17002B1738 /* AddBinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EDAFF229A42F17002B1738 /* AddBinViewController.swift */; };
+		86F377F029A7EF54004F8041 /* Bin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F377EF29A7EF54004F8041 /* Bin.swift */; };
+		86F377F229A7F1D7004F8041 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F377F129A7F1D7004F8041 /* Weekday.swift */; };
 		D2834EDF99464387383A9618 /* Pods_MyWaste_MyWasteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B841D770E241151C3315AE87 /* Pods_MyWaste_MyWasteTests.framework */; };
 		F76BF9E3822D0F37EB81D54E /* Pods_MyWaste.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EAD30546CCF95FDA0D1FBCF /* Pods_MyWaste.framework */; };
 /* End PBXBuildFile section */
@@ -74,6 +76,8 @@
 		86EDAFE329A3D7A1002B1738 /* MyWasteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWasteUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		86EDAFF029A422C6002B1738 /* BinCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinCollectionViewCell.swift; sourceTree = "<group>"; };
 		86EDAFF229A42F17002B1738 /* AddBinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBinViewController.swift; sourceTree = "<group>"; };
+		86F377EF29A7EF54004F8041 /* Bin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bin.swift; sourceTree = "<group>"; };
+		86F377F129A7F1D7004F8041 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
 		A54C189059B1C47416AA2095 /* Pods_MyWaste_MyWasteUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyWaste_MyWasteUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B841D770E241151C3315AE87 /* Pods_MyWaste_MyWasteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyWaste_MyWasteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD9E3E8C0196FD1D89584EF7 /* Pods-MyWaste-MyWasteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWaste-MyWasteTests.debug.xcconfig"; path = "Target Support Files/Pods-MyWaste-MyWasteTests/Pods-MyWaste-MyWasteTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				865A960329A507E3002963BC /* CollectionDayViewInfo.swift */,
+				86F377EF29A7EF54004F8041 /* Bin.swift */,
+				86F377F129A7F1D7004F8041 /* Weekday.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -503,9 +509,11 @@
 				86EDAFC129A3D79C002B1738 /* AppDelegate.swift in Sources */,
 				86E7351429A6746D00B257DB /* WeekDayTableView.swift in Sources */,
 				86E7351029A6691C00B257DB /* BinPickerView.swift in Sources */,
+				86F377F029A7EF54004F8041 /* Bin.swift in Sources */,
 				865A960729A53118002963BC /* CollectionBinView.swift in Sources */,
 				865A960429A507E3002963BC /* CollectionDayViewInfo.swift in Sources */,
 				86EDAFF329A42F17002B1738 /* AddBinViewController.swift in Sources */,
+				86F377F229A7F1D7004F8041 /* Weekday.swift in Sources */,
 				865A960929A5384F002963BC /* CalendarView.swift in Sources */,
 				86EDAFF129A422C6002B1738 /* BinCollectionViewCell.swift in Sources */,
 				86EDAFC329A3D79C002B1738 /* SceneDelegate.swift in Sources */,

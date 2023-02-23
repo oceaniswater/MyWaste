@@ -6,8 +6,19 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AddBinViewController: UIViewController {
+    
+    var bins: Results<Bin>?
+    var weekdays: Results<Weekday>?
+    
+    let realm = try! Realm()
+    
+    var weekdaysTmp: [Weekday] = []
+    var binType: BinsType?
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -82,16 +93,39 @@ class AddBinViewController: UIViewController {
     private var initialBinType: BinsType?
     
     @objc func createButtonPressed() {
-        
+        let newBin = Bin()
+        if let binType = binType {
+            newBin.type = binType
+            saveBin(bin: newBin, weekdays: weekdaysTmp)
+        }
+
     }
 }
 
 private extension AddBinViewController {
+    
+    // MARK: - Realm methods
+    func saveBin(bin: Bin, weekdays: [Weekday]) {
+        do {
+            try realm.write({
+                realm.add(bin)
+                for day in weekdaysTmp {
+                    bin.weekdays.append(day)
+                }
+                
+            })
+        } catch {
+            print("Error save/add realm item object: \(error.localizedDescription)")
+        }
+    }
+    
+    // MARK: - Inizializer
     func initialize() {
         view.backgroundColor = UIColor(named: "BinsColorBackground")
         // могу ли я настраивать первую картинку так же через делегат?
         if let initialBinType = addBinPickerView.binsWasteType.first?.value {
             addBinImageView.image = UIImage(named: initialBinType.rawValue)
+            binType = initialBinType
         }
         
         let scrollView = UIScrollView()
@@ -134,6 +168,7 @@ private extension AddBinViewController {
             make.width.equalTo(scrollView.snp.width)
         }
         
+        addWeekDayTableView.delegate = self
         scrollView.addSubview(addWeekDayTableView)
         addWeekDayTableView.snp.makeConstraints { make in
             make.trailing.leading.equalTo(view.safeAreaLayoutGuide).inset(10)
@@ -156,8 +191,16 @@ extension AddBinViewController: BinTypePickerDelegate {
     func getBinType(_ binPickerView: BinPickerView, _ binType: BinsType) {
         DispatchQueue.main.async { [self] in
             let image = binType.rawValue
+            self.binType = binType
             addBinImageView.image = UIImage(named: image)
         }
+    }
+}
+
+extension AddBinViewController: WeekDayTableViewDelegate {
+    func getWeekdays(_ weekDayTableView: WeekDayTableView, _ weekdays: [Weekday]) {
+        self.weekdaysTmp = weekdays
+        print(weekdays)
     }
     
     
