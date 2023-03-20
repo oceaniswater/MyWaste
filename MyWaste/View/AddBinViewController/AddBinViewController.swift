@@ -11,14 +11,11 @@ import RealmSwift
 class AddBinViewController: UIViewController {
     
     var bins: Results<Bin>?
-    var weekdays: Results<Weekday>?
     
     let realm = try! Realm()
     
     var weekdaysTmp: [Weekday] = []
     var binType: BinsType?
-    
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -95,10 +92,50 @@ class AddBinViewController: UIViewController {
     @objc func createButtonPressed() {
         let newBin = Bin()
         if let binType = binType {
-            newBin.type = binType
-            saveBin(bin: newBin, weekdays: weekdaysTmp)
+            if checkDoubleBin(type: binType) {
+                if checkPickedWeekday(weekdays: weekdaysTmp) {
+                    newBin.type = binType
+                    saveBin(bin: newBin, weekdays: weekdaysTmp)
+                    navigationController?.popViewController(animated: true)
+                } else {
+                    alertAddBinError(title: "Add new bin error", message: "You need to pick at least one weekday")
+                    return
+                }
+
+            } else {
+                alertAddBinError(title: "Add new bin error", message: "It seems you already have a bin of this waste type")
+            }
+
+
         }
 
+    }
+    
+    func checkDoubleBin(type: BinsType) -> Bool {
+
+        bins = realm.objects(Bin.self)
+        if let bins = bins {
+            for bin in bins {
+                if bin.type == type {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    
+    func checkPickedWeekday(weekdays: [Weekday]) -> Bool {
+        var count = 0
+        for day in weekdays {
+            if day.selected == true {
+                count += 1
+            }
+        }
+        if count != 0 {
+            return true
+        } else {
+            return false
+        }
     }
 }
 
@@ -200,7 +237,6 @@ extension AddBinViewController: BinTypePickerDelegate {
 extension AddBinViewController: WeekDayTableViewDelegate {
     func getWeekdays(_ weekDayTableView: WeekDayTableView, _ weekdays: [Weekday]) {
         self.weekdaysTmp = weekdays
-        print(weekdays)
     }
     
     

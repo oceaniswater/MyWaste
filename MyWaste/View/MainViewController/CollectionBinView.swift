@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CollectionBinView: UIView {
     // MARK: - Public functions
     
-    func configure(with bin: [Bin]) {
+    func configure(with bin: Results<Bin>) {
         bins = bin
         collectionView.reloadData()
     }
@@ -36,7 +37,7 @@ class CollectionBinView: UIView {
     
     // MARK: - Private properties
     private var collectionView: UICollectionView!
-    private var bins: [Bin] = []
+    private var bins: Results<Bin>?
 }
 
 // MARK: - Private methods
@@ -65,13 +66,20 @@ private extension CollectionBinView {
 // MARK: - UICollectionViewDataSource
 extension CollectionBinView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        bins.count
+        if let bins = bins {
+            return bins.count
+        } else {
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: BinCollectionViewCell.self), for: indexPath) as! BinCollectionViewCell
-        let imageName = bins[indexPath.item].type.rawValue
-        cell.configure(with: imageName)
+        if let bins = bins {
+            let imageName = bins[indexPath.item].type.rawValue
+            cell.configure(with: imageName)
+        }
+            
         return cell
     }
     

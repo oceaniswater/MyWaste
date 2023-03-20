@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 struct CollectionDayViewInfo {
     let textInfo: String
-    let bins: [Bin]
+    let bins: Results<Bin>
 }
 
 

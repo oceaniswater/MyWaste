@@ -15,11 +15,10 @@ protocol WeekDayTableViewDelegate {
 class WeekDayTableView: UIView {
     // MARK: - Public functions
     
-    func configure() {
-//        bins = bin
-//        collectionView.reloadData()
-        weekdaysTableView.reloadData()
-    }
+//    func configure(with weekdays: [Weekday]) {
+//        self.weekdays = weekdays
+//        weekdaysTableView.reloadData()
+//    }
     
     // MARK: - Init
     init() {

@@ -7,8 +7,12 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 class ViewController: UIViewController {
+    
+    var bins: Results<Bin>?
+    let realm = try! Realm()
     
     let addCollectionDayTitle: UILabel = {
         let label = UILabel()
@@ -53,11 +57,6 @@ class ViewController: UIViewController {
         return collection
     }()
     
-    
-    
-//    let bins: [Bin] = [Bin(type: .ewaste), Bin(type: .paper), Bin(type: .plastic), Bin(type: .glass), Bin(type: .organic), Bin(type: .metal)]
-//    let info = CollectionDayViewInfo(textInfo: "Friday, February 25", bins: [Bin(type: .ewaste), Bin(type: .paper), Bin(type: .plastic)])
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -76,6 +75,13 @@ class ViewController: UIViewController {
         let attributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "BinsColorText")]
         navBar.titleTextAttributes = attributes as [NSAttributedString.Key : Any]
         navigationItem.backButtonTitle = "Back"
+        
+        // update collection view
+        if let bins = bins {
+            addCollectionView.configure(with: bins)
+            addCollectionDayInfoView.configure(with: CollectionDayViewInfo(textInfo: "Wednesday, 22", bins: bins))
+        }
+
     }
     
     override func viewDidLoad() {
@@ -84,7 +90,8 @@ class ViewController: UIViewController {
 
 
 //        addCollectionDayInfoView.configure(with: info)
-//        addCollectionView.configure(with: bins)
+
+        loadBins()
         initialize()
     }
     
@@ -97,9 +104,15 @@ class ViewController: UIViewController {
 //        present(modalViewController, animated: true, completion: nil)
         
     }
+    // MARK: - Realm methods
+    
+    func loadBins() {
+        bins = realm.objects(Bin.self)
+    }
+    
 }
 
-// MARK: - Setup UI
+// MARK: - Initializer
 
 private extension ViewController {
      func initialize() {
@@ -126,18 +139,6 @@ private extension ViewController {
             maker.width.equalTo(scrollView.snp.width)
         }
 
-        scrollView.addSubview(addScheduleTitle)
-        addScheduleTitle.snp.makeConstraints { maker in
-            maker.leading.equalToSuperview()
-            maker.top.equalTo(addCollectionDayInfoView.snp.bottom).offset(10)
-        }
-
-        scrollView.addSubview(addCalendarView)
-        addCalendarView.snp.makeConstraints { maker in
-            maker.leading.trailing.equalToSuperview()
-            maker.top.equalTo(addScheduleTitle.snp.bottom).offset(10)
-            maker.width.equalTo(scrollView.snp.width)
-        }
 
         let horizontalStackView = UIStackView(arrangedSubviews: [addBinsTitleLabel, addAddButton])
         horizontalStackView.axis = .horizontal
@@ -146,17 +147,29 @@ private extension ViewController {
         scrollView.addSubview(horizontalStackView)
         horizontalStackView.snp.makeConstraints { maker in
             maker.leading.trailing.equalToSuperview()
-            maker.top.equalTo(addCalendarView.snp.bottom).offset(10)
+            maker.top.equalTo(addCollectionDayInfoView.snp.bottom).offset(10)
         }
 
         scrollView.addSubview(addCollectionView)
         addCollectionView.snp.makeConstraints { maker in
             maker.leading.trailing.equalToSuperview()
             maker.top.equalTo(horizontalStackView.snp.bottom).offset(10)
-            maker.bottom.equalToSuperview()
-            maker.width.equalTo(scrollView.snp.width)
+
         }
+         
+         scrollView.addSubview(addScheduleTitle)
+         addScheduleTitle.snp.makeConstraints { maker in
+             maker.leading.equalToSuperview()
+             maker.top.equalTo(addCollectionView.snp.bottom).offset(10)
+         }
+         
+         scrollView.addSubview(addCalendarView)
+         addCalendarView.snp.makeConstraints { maker in
+             maker.leading.trailing.equalToSuperview()
+             maker.top.equalTo(addScheduleTitle.snp.bottom).offset(10)
+             maker.bottom.equalToSuperview()
+             maker.width.equalTo(scrollView.snp.width)
+         }
     }
 }
-
 

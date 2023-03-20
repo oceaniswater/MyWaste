@@ -7,6 +7,7 @@
 
 import SnapKit
 import UIKit
+import RealmSwift
 
 class CollectionDayView: UIView {
     // MARK: - Public functions
@@ -48,7 +49,7 @@ class CollectionDayView: UIView {
     }()
     
     private var collectionView: UICollectionView!
-    private var bins: [Bin] = []
+    private var bins: Results<Bin>?
 
     
 }
@@ -86,14 +87,22 @@ private extension CollectionDayView {
 // MARK: - UICollectionViewDataSource
 extension CollectionDayView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        bins.count
+        if let bins = bins {
+            return bins.count
+        } else {
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: BinCollectionViewCell.self), for: indexPath) as! BinCollectionViewCell
-        let imageName = bins[indexPath.item].type.rawValue
-        cell.configure(with: imageName)
-        return cell
+        if let bins = bins {
+            let imageName = bins[indexPath.item].type.rawValue
+            cell.configure(with: imageName)
+            return cell
+        } else {
+            return cell
+        }
     }
     
     
